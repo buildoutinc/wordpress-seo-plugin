@@ -10,7 +10,10 @@
 
 
 function custom_rewrite_basic() {
-  add_rewrite_rule('^' . get_option( 'buildout_seo_setting_root_path' ) . '/.*', 'index.php?page_id=' . get_option( 'buildout_seo_setting_plugin_page_id' ), 'top');
+  $root_path = get_option( 'buildout_seo_setting_root_path' );
+  $root_path = trim($root_path, '/');
+
+  add_rewrite_rule('^' . $root_path . '/.*', 'index.php?page_id=' . get_option( 'buildout_seo_setting_plugin_page_id' ), 'top');
 }
 add_action('init', 'custom_rewrite_basic');
 
